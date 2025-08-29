@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
-import sequelize from "../database/config/db";
+//import sequelize from "../database/config/db";
 import Users from "./routes/users";
 
 const app: Express = express();
