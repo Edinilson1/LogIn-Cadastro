@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction } from "jsonwebtoken";
+import { Request, Response, NextFunction } from "express";
+import jwk from "jsonwebtoken";
 
 
 const auth = (req: Request, res:Response, next:NextFunction) => {

@@ -1,0 +1,15 @@
+services:
+  db:
+    image: mysql:8
+    container_name: meu-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Rafaela07072010
+      MYSQL_DATABASE: login
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
