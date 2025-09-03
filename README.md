@@ -10,6 +10,7 @@ Server - Pasta do BackEnd<br>
 
 Adicione um arquivo ".env" na pasta server com a seguinte informação:<br>
 DATABASE_URL="mysql://root:Rafaela07072010@localhost:3306/login"<br>
+JWT_SECRET="7f5b67e801b90c9c8fef87e6376d71a43afeadaef54c262a2978447ad33bb896d9e8da820b3e8d6bdf3b6fb0f0b7cc2c25dda3048d075402fcdff27fa41f0127"<br>
 
 Dê "npx prisma generate" no terminal da pasta server para gerar as dependências do prisma<br>
 

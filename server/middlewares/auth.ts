@@ -1,10 +1,33 @@
 import { Request, Response, NextFunction } from "express";
-import jwk from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
+const JWT_SECRET = process.env.JWT_SECRET as string;
+
+interface JwtPayload {
+    id: string;
+    iat?: number;
+    exp?: number;
+}
 
 const auth = (req: Request, res:Response, next:NextFunction) => {
 
-    // Fazer verificação de token
+    const token = req.headers.authorization
+
+
+    if(!token) {
+        return res.status(401).json({ message: "Acesso negado" })
+    }
+
+
+    try {
+        const decoded = jwt.verify(token.replace("Bearer ", ""), JWT_SECRET) as JwtPayload;
+
+        (req as any).userId = decoded.id;
+
+        next();
+    } catch(err) {
+        return res.status(401).json({ message: "Token inválido" })
+    }
     
 }
 
