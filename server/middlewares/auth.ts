@@ -11,12 +11,16 @@ interface JwtPayload {
 
 const auth = (req: Request, res:Response, next:NextFunction) => {
 
-    const token = req.headers.authorization
+    const authHeader = req.headers.authorization;
 
 
-    if(!token) {
+    if(!authHeader) {
         return res.status(401).json({ message: "Acesso negado" })
     }
+
+    const token = authHeader.startsWith("Bearer ")
+        ? authHeader.replace(/^Bearer\s+/i, "")
+        : authHeader;
 
 
     try {

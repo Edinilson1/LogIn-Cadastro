@@ -1,22 +1,22 @@
 import { Router, Request, Response } from "express";
 import { PrismaClient } from "../../generated/prisma";
-import auth from "../../middlewares/auth";
+import { authRole } from "../../middlewares/authrole";
 
 const router = Router();
 const prisma = new PrismaClient();
 
-router.get("/meusdados", auth, async (req: Request, res:Response) => {
+router.get("/listadeusuarios", authRole("admin"), async (req: Request, res:Response) => {
     try {
-        const user = await prisma.user.findUnique({
-            where: { id: (req as any).userId },
+        const users = await prisma.user.findMany({
             select: {
                 id: true,
                 name: true,
-                email: true
+                email: true,
+                criado_em: true
             }
         });
 
-        res.status(200).json({ message: "Dados listados", user })
+        res.status(200).json({ message: "Usuários listados", users })
     } catch(err) {
         res.status(500).json({ message: "Falha no servidor" })
     }

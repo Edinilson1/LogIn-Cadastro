@@ -13,18 +13,34 @@ router.post("/cadastro", async (req: Request, res:Response) => {
     try {
         const user = req.body;
 
-        const niveldeencriptacao = await bcrypt.genSalt(10)
-        const senhaencriptada = await bcrypt.hash(user.password, niveldeencriptacao)
+        if (!user.name || !user.email || !user.password) {
+            return res.status(400).json({ message: "Preencha todos os campos" });
+        }
 
-        const userDB = await prisma.user.create({
+        const existingUser = await prisma.user.findUnique({
+            where: { email: user.email }
+        });
+
+        if (existingUser) {
+            return res.status(400).json({ message: "Email já cadastrado" });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedpassword = await bcrypt.hash(user.password, salt);
+
+        const userSQL = await prisma.user.create({
             data: {
                 name: user.name,
                 email: user.email,
-                password: senhaencriptada
-            }
+                password: hashedpassword,
+                isAdmin: false
+            },
+            select: { id: true, name: true, email: true }
         });
 
-        res.status(201).json({userDB});
+        const token = jwt.sign({ id: userSQL.id }, JWT_SECRET, { expiresIn: "1h" });
+
+        res.status(201).json({ user: userSQL, token })
 
     } catch(err) {
         res.status(500).json({message: "Erro no servidor"})
@@ -52,9 +68,9 @@ router.post("/login", async (req: Request, res: Response) => {
 
         const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "10m" })
 
-        res.status(200).json(token);
+        res.status(200).json({ token });
 
-    } catch (err) {
+    } catch(err) {
         res.status(500).json({ message: "Erro no servidor" })
     }
 
