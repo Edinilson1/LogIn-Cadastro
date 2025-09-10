@@ -1,6 +1,6 @@
 .div1 {
   width: 25vw;
-  height: 38vh;
+  height: fit-content;
   border: 2px solid black;
   border-radius: 5px;
   text-align: center;
