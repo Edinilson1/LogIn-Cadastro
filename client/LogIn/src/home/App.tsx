@@ -7,10 +7,6 @@ function App() {
   const [senha, setSenha] = useState<string>("");
   const [mensagem, setMensagem] = useState<string>("");
 
-  type token = {
-    token: string;
-  }
-
 
   async function Entrar(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,9 +31,8 @@ function App() {
         throw new Error(err.message || "Erro no servidor");
 
       } else {
-        const dados: token = await resposta.json();
 
-        setMensagem(`Logado com token ${dados.token}`);
+        setMensagem("Logado");
 
       }
 
