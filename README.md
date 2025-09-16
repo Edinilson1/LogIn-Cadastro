@@ -3,7 +3,7 @@ https://www.docker.com/ (Caso seja necessário a criação de uma imagem do banc
 
 Caso for baixar este projeto, dê "npm install" nos terminais das respectivas pastas:<br>
 
-PastaPrincipal - pasta que engloba client e server<br>
+Pasta Raiz - pasta que engloba client e server<br>
 LogIn - pasta do FrontEnd<br>
 Server - Pasta do BackEnd<br>
 
