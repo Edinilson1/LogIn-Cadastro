@@ -1,5 +1,4 @@
 Aplicativo necessários:<br>
-https://git-scm.com/downloads <br>
 https://www.docker.com/ (Caso seja necessário a criação de uma imagem do banco de dados)<br>
 
 Caso for baixar este projeto, dê "npm install" nos terminais das respectivas pastas:<br>
