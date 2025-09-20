@@ -1,11 +1,7 @@
 Aplicativo necessário:<br>
 https://www.docker.com/ (Caso seja necessário a criação de uma imagem do banco de dados)<br>
 
-Caso for baixar este projeto, dê "npm install" nos terminais das respectivas pastas:<br>
-
-Pasta Raiz - pasta que engloba client e server<br>
-LogIn - pasta do FrontEnd<br>
-Server - Pasta do BackEnd<br>
+Caso for baixar este projeto, dê "npm run install-all" na pasta raiz do projeto par instalar todas as dependências<br>
 
 Dê "npx prisma generate" no terminal da pasta server para gerar as dependências do prisma<br>
 
