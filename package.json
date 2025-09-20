@@ -5,7 +5,7 @@
     "dev": "concurrently \"npm run dev --prefix client/login\" \"npm run dev --prefix server\"",
     "client": "npm run dev --prefix client/login",
     "server": "npm run dev --prefix server",
-    "install-all": "npm install --prefix client/login && npm install --prefix server",
+    "install-all": "npm install && npm install --prefix client/login && npm install --prefix server",
     "build": "npm run build --prefix client/login && npm run build --prefix server",
     "start": "npm run start --prefix server"
   },
