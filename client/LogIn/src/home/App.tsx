@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import './App.css'
 import { Link } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
 
 function App() {
   const [email, setEmail] = useState<string>("");
   const [senha, setSenha] = useState<string>("");
   const [mensagem, setMensagem] = useState<string>("");
+  const navigate = useNavigate();
 
 
   async function Entrar(event: React.FormEvent<HTMLFormElement>) {
@@ -33,12 +35,15 @@ function App() {
       } else {
 
         setMensagem("Logado");
+        const data = await resposta.json();
+        sessionStorage.setItem("token", data.token);
+        navigate("/home");
 
       }
 
 
     } catch (err: any) {
-      setMensagem("Erro: " + err.message)
+      setMensagem("Erro: Usuário ou Senha Inválidos")
     }
 
   };
