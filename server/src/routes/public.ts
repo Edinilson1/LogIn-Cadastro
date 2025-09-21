@@ -38,9 +38,9 @@ router.post("/cadastro", async (req: Request, res:Response) => {
             select: { id: true, name: true, email: true }
         });
 
-        const token = jwt.sign({ id: userSQL.id }, JWT_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ id: userSQL.id }, JWT_SECRET, { expiresIn: "10m" });
 
-        res.status(201).json({ user: userSQL, token })
+        res.status(200).json({ token })
 
     } catch(err) {
         res.status(500).json({message: "Erro no servidor"})
