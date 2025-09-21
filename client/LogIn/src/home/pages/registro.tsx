@@ -2,6 +2,7 @@ import { useState } from 'react'
 import '../App.css'
 import { Link } from "react-router-dom"
 import "../App.css"
+import { useNavigate } from 'react-router-dom';
 
 function Registro() {
   const [senha, setSenha] = useState<string>("");
@@ -11,6 +12,8 @@ function Registro() {
 
   async function Registrar(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    const navigate = useNavigate();
 
     try {
 
@@ -31,6 +34,9 @@ function Registro() {
         throw new Error(err.message || "Erro no servidor");
       } else {
         setMensagem("Conta Criada");
+        const data = await resposta.json();
+        sessionStorage.setItem("token", data.token);
+        navigate("/home");
       }
 
     } catch(err: any) {
