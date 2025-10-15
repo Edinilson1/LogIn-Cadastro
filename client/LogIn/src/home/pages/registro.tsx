@@ -10,15 +10,15 @@ function Registro() {
   const [usuario, setUsuario] = useState<string>("");
   const [mensagem, setMensagem] = useState<string>("");
 
+  const navigate = useNavigate();
+
   async function Registrar(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    const navigate = useNavigate();
 
     try {
 
       const resposta = await fetch("http://localhost:3000/api/cadastro", {
-        method: "post",
+        method: "POST",
 
         headers: {
           "Content-Type": "application/json"
