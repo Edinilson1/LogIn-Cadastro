@@ -16,7 +16,7 @@ function App() {
     try {
       
       const resposta = await fetch("http://localhost:3000/api/login", {
-        method: "post",
+        method: "POST",
 
         headers: {
           "Content-Type": "application/json"
